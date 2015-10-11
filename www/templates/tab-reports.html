@@ -1,0 +1,14 @@
+<ion-view view-title="Reports" cache-view="false">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="report in reports" type="item-text-wrap" href="#/tab/reports/{{report.id}}">
+        <h2>{{report.creationDate}}</h2>
+        <p><span>Min: </span>{{report.minTemperature}}</p>
+        <p><span>Max: </span>{{report.maxTemperature}}</p>
+        <p><span>Average: </span>{{report.averageTemperature}}</p>
+
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
