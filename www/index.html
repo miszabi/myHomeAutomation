@@ -6,7 +6,14 @@
     <title></title>
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="lib/ionic-material/css/ionic.material-design-lite.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="lib/angular-chart.js/dist/angular-chart.css">
+
+
+    <!--todo material design-->
+
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
@@ -14,9 +21,13 @@
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
-
+    <script src="lib/ionic-material/js/ionic.material-design-lite.bundle.js"></script>
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
+
+    <script src="lib/Chart.js/Chart.min.js"></script>
+    <script src="lib/angular-chart.js/dist/angular-chart.js"></script>
+    <script src="lib/underscore/underscore.js"></script>
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
@@ -26,10 +37,16 @@
     <script src="js/dashboard/dashboardController.js"></script>
     <script src="js/reports/reportController.js"></script>
     <script src="js/reports/reportDetailController.js"></script>
-    <script src="js/services.js"></script>
+    <script src="js/settings/settingsController.js"></script>
+
+    <script src="js/services/loginService.js"></script>
+    <script src="js/services/reportService.js"></script>
+    <script src="js/services/dashboardService.js"></script>
+    <script src="js/services/settingsService.js"></script>
+    <script src="js/services/heaterService.js"></script>
 
   </head>
-  <body ng-app="home-automation-app">
+  <body use-material-icons ng-app="home-automation-app">
     <!--
       The nav bar that will be updated as we navigate between views.
     -->

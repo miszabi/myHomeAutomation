@@ -1,7 +1,7 @@
-<ion-view view-title="Dashboard">
+<ion-view view-title="Dashboard" cache-view="false">
   <ion-content>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" href="#/settings/{{dashboard.tempSettings.type}}">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" href="#/tab/heater">
         <h2 class="title">{{dashboard.tempSettings.title}}</h2>
         <p><span>Current temperature : </span>{{dashboard.tempSettings.currentTemperature}}</p>
         <p><span>Heater Running: </span>{{dashboard.tempSettings.isON}}</p>
@@ -9,14 +9,14 @@
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
 
-      <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" href="#/settings/{{dashboard.lightSettings.type}}">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" href="#/setting/{{dashboard.lightSettings.type}}">
         <h2 class="title">{{dashboard.lightSettings.title}}</h2>
         <p><span>Is On : </span>{{dashboard.lightSettings.isOn}}</p>
         <p><span>Turn off in  </span>{{dashboard.lightSettings.turnOffIn}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
 
-      <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" href="#/settings/{{dashboard.cameraSettings.type}}">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" href="#/setting/{{dashboard.cameraSettings.type}}">
         <h2 class="title">{{dashboard.cameraSettings.cameraOne.title}}</h2>
         <p><span>Is On : </span>{{dashboard.cameraSettings.cameraOne.isOn}}</p>
         <p><span>Turned  </span>{{dashboard.cameraSettings.cameraOne.runningTime}} <span> minutes ago</span></p>

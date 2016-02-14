@@ -1,9 +1,18 @@
-<ion-view view-title="Account">
-  <ion-content>
-    <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Enable Friends
-    </ion-toggle>
-    </ion-list>
+<ion-view view-title="Setting" class="setting">
+  <ion-content style="height:100%">
+    <ion-slide-box style="height: 100%" on-slide-changed="slideHasChanged">
+      <ion-slide>
+        <div style="height:100%; background-color: red;">
+          setting
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div style="height:100%; background-color: green">
+          alalal
+        </div>
+      </ion-slide>
+    </ion-slide-box>
+
   </ion-content>
 </ion-view>
+

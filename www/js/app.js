@@ -1,12 +1,5 @@
-// Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.services' is found in services.js
-// 'starter.controllers' is found in controllers.js
-angular.module('home-automation-app', ['ionic', 'home-automation-app.controllers', 'home-automation-app.services'])
-
+angular.module('home-automation-app', ['ionic', 'home-automation-app.controllers', 'home-automation-app.services', "chart.js"])
+  .constant('ENDPOINT_URI', 'http://localhost:3001/api/')
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -23,7 +16,7 @@ angular.module('home-automation-app', ['ionic', 'home-automation-app.controllers
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -36,7 +29,26 @@ angular.module('home-automation-app', ['ionic', 'home-automation-app.controllers
       url: '/login',
       templateUrl: 'templates/login/index.html',
       controller: 'LoginCtrl'
-  }).state('tab', {
+  })
+
+    .state('setting', {
+      url: '/setting',
+      templateUrl: 'templates/settings/index.html',
+      abstract: true//,
+      //controller : 'SettingsCtrl'
+  })
+
+    .state('setting.temperature', {
+      url: '/temperature',
+      views : {
+        'setting-temperature' : {
+          templateUrl : 'templates/settings/setting-temperature.html',
+          controller : 'SettingsCtrl'
+        }
+      }
+    })
+
+    .state('tab', {
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'
@@ -49,13 +61,24 @@ angular.module('home-automation-app', ['ionic', 'home-automation-app.controllers
     views: {
       'tab-dash': {
         templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+        controller: 'DashboardCtrl'
+      }
+    }
+  })
+
+  .state('tab.heater', {
+    url: '/heater',
+    views: {
+      'tab-dash': {
+        templateUrl: 'templates/heater/actions.html',
+        controller: 'DashboardCtrl'
       }
     }
   })
 
   .state('tab.reports', {
       url: '/reports',
+      cache: false,
       views: {
         'tab-reports': {
           templateUrl: 'templates/tab-reports.html',
@@ -86,4 +109,23 @@ angular.module('home-automation-app', ['ionic', 'home-automation-app.controllers
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
 
-});
+    $httpProvider.interceptors.push(['$q', '$location', '$window', function($q, $location, $window) {
+      return {
+        'request': function (config) {
+          config.headers = config.headers || {};
+
+          if ($window.Storage.token) {
+            config.headers['x-access-token'] = $window.Storage.token;
+          }
+
+          return config;
+        },
+        'responseError': function(response) {
+          if(response.status === 401 || response.status === 403) {
+            $location.path('/login');
+          }
+          return $q.reject(response);
+        }
+      };
+    }]);
+  });
